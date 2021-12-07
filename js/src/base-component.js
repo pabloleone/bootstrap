@@ -22,8 +22,9 @@ const VERSION = '5.1.3'
 
 class BaseComponent extends Config {
   constructor(element, config) {
-    element = getElement(element)
     super()
+
+    element = getElement(element)
     if (!element) {
       return
     }
