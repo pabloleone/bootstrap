@@ -145,7 +145,7 @@
     "sass": "^1.44.0",
     "shelljs": "^0.8.4",
     "stylelint": "^14.1.0",
-    "stylelint-config-twbs-bootstrap": "^3.0.0-alpha2",
+    "stylelint-config-twbs-bootstrap": "github:twbs/stylelint-config-twbs-bootstrap#stylelint-config-recess-order",
     "terser": "^5.10.0",
     "vnu-jar": "21.10.12"
   },
