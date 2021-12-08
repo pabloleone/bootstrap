@@ -17,8 +17,8 @@ class Config {
     return {}
   }
 
-  _getConfigDefaultType() {
-    return this.constructor.DefaultType || {}
+  static get DefaultType() {
+    return {}
   }
 
   _getConfig(config) {
@@ -40,7 +40,7 @@ class Config {
     }
   }
 
-  _typeCheckConfig(config, configTypes = this._getConfigDefaultType()) {
+  _typeCheckConfig(config, configTypes = this.constructor.DefaultType) {
     for (const property of Object.keys(configTypes)) {
       const expectedTypes = configTypes[property]
       const value = config[property]

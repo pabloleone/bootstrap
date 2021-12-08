@@ -77,6 +77,10 @@ class Modal extends BaseComponent {
     return Default
   }
 
+  static get DefaultType() {
+    return DefaultType
+  }
+
   static get NAME() {
     return NAME
   }
@@ -158,10 +162,6 @@ class Modal extends BaseComponent {
       isVisible: Boolean(this._config.backdrop), // 'static' option will be translated to true, and booleans will keep their value
       isAnimated: this._isAnimated()
     })
-  }
-
-  _getConfigDefaultType() {
-    return DefaultType
   }
 
   _initializeFocusTrap() {

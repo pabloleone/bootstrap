@@ -113,6 +113,10 @@ class Carousel extends BaseComponent {
     return Default
   }
 
+  static get DefaultType() {
+    return DefaultType
+  }
+
   static get NAME() {
     return NAME
   }
@@ -203,11 +207,6 @@ class Carousel extends BaseComponent {
   }
 
   // Private
-
-  _getConfigDefaultType() {
-    return DefaultType
-  }
-
   _addEventListeners() {
     if (this._config.keyboard) {
       EventHandler.on(this._element, EVENT_KEYDOWN, event => this._keydown(event))

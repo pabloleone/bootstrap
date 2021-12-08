@@ -79,6 +79,10 @@ class ScrollSpy extends BaseComponent {
     return Default
   }
 
+  static get DefaultType() {
+    return DefaultType
+  }
+
   static get NAME() {
     return NAME
   }
@@ -133,9 +137,6 @@ class ScrollSpy extends BaseComponent {
   }
 
   // Private
-  _getConfigDefaultType() {
-    return DefaultType
-  }
 
   _configAfterMerge(config) {
     config.target = getElement(config.target) || document.documentElement

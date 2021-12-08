@@ -60,6 +60,10 @@ class TemplateFactory extends Config {
     return Default
   }
 
+  static get DefaultType() {
+    return DefaultType
+  }
+
   // Public
   getContent() {
     return Object.values(this._config.content)
@@ -96,10 +100,6 @@ class TemplateFactory extends Config {
   }
 
   // Private
-  _getConfigDefaultType() {
-    return DefaultType
-  }
-
   _typeCheckConfig(config) {
     super._typeCheckConfig(config)
     this._checkContent(config.content)

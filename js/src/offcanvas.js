@@ -78,6 +78,10 @@ class Offcanvas extends BaseComponent {
     return Default
   }
 
+  static get DefaultType() {
+    return DefaultType
+  }
+
   // Public
   toggle(relatedTarget) {
     return this._isShown ? this.hide() : this.show(relatedTarget)
@@ -159,11 +163,6 @@ class Offcanvas extends BaseComponent {
   }
 
   // Private
-
-  _getConfigDefaultType() {
-    return DefaultType
-  }
-
   _initializeBackDrop() {
     return new Backdrop({
       className: CLASS_NAME_BACKDROP,

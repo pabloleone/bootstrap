@@ -64,16 +64,16 @@ class Swipe extends Config {
     return Default
   }
 
+  static get DefaultType() {
+    return DefaultType
+  }
+
   // Public
   dispose() {
     EventHandler.off(this._element, EVENT_KEY)
   }
 
   // Private
-  _getConfigDefaultType() {
-    return DefaultType
-  }
-
   _start(event) {
     if (!this._supportPointerEvents) {
       this._deltaX = event.touches[0].clientX

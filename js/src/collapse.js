@@ -93,6 +93,10 @@ class Collapse extends BaseComponent {
     return Default
   }
 
+  static get DefaultType() {
+    return DefaultType
+  }
+
   static get NAME() {
     return NAME
   }
@@ -207,11 +211,6 @@ class Collapse extends BaseComponent {
   }
 
   // Private
-
-  _getConfigDefaultType() {
-    return DefaultType
-  }
-
   _configAfterMerge(config) {
     config.toggle = Boolean(config.toggle) // Coerce string values
     config.parent = getElement(config.parent)

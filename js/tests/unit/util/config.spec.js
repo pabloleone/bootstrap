@@ -16,8 +16,7 @@ describe('Config', () => {
 
   describe('DefaultType', () => {
     it('should return plugin default type', () => {
-      expect(DummyConfigClass.DefaultType).toEqual(undefined)
-      expect(new DummyConfigClass()._getConfigDefaultType()).toEqual(jasmine.any(Object))
+      expect(DummyConfigClass.DefaultType).toEqual(jasmine.any(Object))
     })
   })
 
@@ -29,8 +28,7 @@ describe('Config', () => {
 
   describe('typeCheckConfig', () => {
     it('should check type of the config object', () => {
-      const obj = new DummyConfigClass()
-      spyOn(obj, '_getConfigDefaultType').and.returnValue({
+      spyOnProperty(DummyConfigClass, 'DefaultType', 'get').and.returnValue({
         toggle: 'boolean',
         parent: '(string|element)'
       })
@@ -39,17 +37,19 @@ describe('Config', () => {
         parent: 777
       }
 
+      const obj = new DummyConfigClass()
       expect(() => {
         obj._typeCheckConfig(config)
       }).toThrowError(TypeError, obj.constructor.NAME.toUpperCase() + ': Option "parent" provided type "number" but expected type "(string|element)".')
     })
 
     it('should return null stringified when null is passed', () => {
-      const obj = new DummyConfigClass()
-      spyOn(obj, '_getConfigDefaultType').and.returnValue({
+      spyOnProperty(DummyConfigClass, 'DefaultType', 'get').and.returnValue({
         toggle: 'boolean',
         parent: '(null|element)'
       })
+
+      const obj = new DummyConfigClass()
       const config = {
         toggle: true,
         parent: null
@@ -60,11 +60,12 @@ describe('Config', () => {
     })
 
     it('should return undefined stringified when undefined is passed', () => {
-      const obj = new DummyConfigClass()
-      spyOn(obj, '_getConfigDefaultType').and.returnValue({
+      spyOnProperty(DummyConfigClass, 'DefaultType', 'get').and.returnValue({
         toggle: 'boolean',
         parent: '(undefined|element)'
       })
+
+      const obj = new DummyConfigClass()
       const config = {
         toggle: true,
         parent: undefined

@@ -54,6 +54,10 @@ class Backdrop extends Config {
     return Default
   }
 
+  static get DefaultType() {
+    return DefaultType
+  }
+
   // Public
   show(callback) {
     if (!this._config.isVisible) {
@@ -112,10 +116,6 @@ class Backdrop extends Config {
     }
 
     return this._element
-  }
-
-  _getConfigDefaultType() {
-    return DefaultType
   }
 
   _configAfterMerge(config) {

@@ -53,6 +53,10 @@ class FocusTrap extends Config {
     return Default
   }
 
+  static get DefaultType() {
+    return DefaultType
+  }
+
   // Public
   activate() {
     const { trapElement, autofocus } = this._config
@@ -107,10 +111,6 @@ class FocusTrap extends Config {
     }
 
     this._lastTabNavDirection = event.shiftKey ? TAB_NAV_BACKWARD : TAB_NAV_FORWARD
-  }
-
-  _getConfigDefaultType() {
-    return DefaultType
   }
 }
 
