@@ -2,6 +2,8 @@
 
 ## Installation
 
+> Components tested on Bootstrap version 5.1.3
+
 Here the necessary files to pull from CDN:
 
 ```html
