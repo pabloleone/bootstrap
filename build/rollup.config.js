@@ -9,7 +9,7 @@ const banner = require('./banner.js')
 const BUNDLE = process.env.BUNDLE === 'true'
 const ESM = process.env.ESM === 'true'
 
-let fileDest = `bootstrap-badges-and-tags${ESM ? '.esm' : ''}`
+let fileDest = `bootstrap-badges${ESM ? '.esm' : ''}`
 const external = ['@popperjs/core']
 const plugins = [
   babel({
