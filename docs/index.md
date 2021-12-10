@@ -172,9 +172,9 @@ The input badges uses dismissable [badge]({{< docsref "/components/badge" >}}) i
 
 Add tags below by pressing "Enter" and click on the cross button to remove them.
 
-{{< example >}}
+```html
 <input class="form-control" type="text" data-bs-badges="input-badges" data-bs-colour="secondary" data-bs-rounded="false">
-{{< /example >}}
+```
 
 ## JavaScript behavior
 
