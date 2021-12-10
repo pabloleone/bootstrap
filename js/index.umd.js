@@ -6,7 +6,9 @@
  */
 
 import Badge from './src/badge'
+import InputBadges from './src/input-badges'
 
 export default {
   Badge,
+  InputBadges,
 }
