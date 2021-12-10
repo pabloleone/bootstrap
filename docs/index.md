@@ -1,37 +1,150 @@
-## Welcome to GitHub Pages
+## Examples
 
-You can use the [editor on GitHub](https://github.com/pabloleone/bootstrap/edit/feature/badges/docs/index.md) to maintain and preview the content for your website in Markdown files.
+### Dismissing
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Using the badge JavaScript plugin, it's possible to dismiss any badge inline. Here's how:
 
-### Markdown
+- Be sure you've loaded the badge plugin, or the compiled Bootstrap JavaScript.
+- Add a [close button]({{< docsref "/components/close-button" >}}) and the `.badge-dismissible` class, which adds extra padding to the right of the badge and positions the close button.
+- On the close button, add the `data-bs-dismiss="badge"` attribute, which triggers the JavaScript functionality. Be sure to use the `<button>` element with it for proper behavior across all devices.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+You can see this in action with a live demo:
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```html
+<span class="badge bg-primary badge-dismissable" role="badge">
+  Primary
+  <button type="button" class="btn-close" data-bs-dismiss="badge" aria-label="Close"></button>
+</span>
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+```markdown
+When an badge is dismissed, the element is completely removed from the page structure. If a keyboard user dismisses the badge using the close button, their focus will suddenly be lost and, depending on the browser, reset to the start of the page/document. For this reason, we recommend including additional JavaScript that listens for the `closed.bs.badge` event and programmatically sets `focus()` to the most appropriate location in the page. If you're planning to move focus to a non-interactive element that normally does not receive focus, make sure to add `tabindex="-1"` to the element.
+```
 
-### Jekyll Themes
+## JavaScript behavior
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/pabloleone/bootstrap/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### Initialize
 
-### Support or Contact
+Initialize elements as badges
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+```js
+var badgeList = document.querySelectorAll('.badge')
+var badges = Array.prototype.slice.call(badgeList).map(function (element) {
+  return new bootstrap.Badge(element)
+})
+```
+
+```markdown
+For the sole purpose of dismissing a badge, it isn't necessary to initialize the component manually via the JS API. By making use of `data-bs-dismiss="badge"`, the component will be initialized automatically and properly dismissed.
+
+See the [triggers](#triggers) section for more details.
+```
+
+### Triggers
+
+Dismissal can be achieved with the data attribute on a button within the alert as demonstrated below:
+
+```html
+<button type="button" class="btn-close" data-bs-dismiss="badge" aria-label="Close"></button>
+```
+
+or on a button outside the badge using the data-bs-target as demonstrated below:
+
+```html
+<button type="button" class="btn-close" data-bs-dismiss="badge" data-bs-target="#my-badge" aria-label="Close"></button>
+```
+
+
+**Note that closing an badge will remove it from the DOM.**
+
+### Methods
+
+```html
+<table class="table">
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>close</code>
+      </td>
+      <td>
+        Closes an badge by removing it from the DOM. If the <code>.fade</code> and <code>.show</code> classes are present on the element, the badge will fade out before it is removed.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>dispose</code>
+      </td>
+      <td>
+        Destroys an element's badge. (Removes stored data on the DOM element)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>getInstance</code>
+      </td>
+      <td>
+        Static method which allows you to get the badge instance associated to a DOM element, you can use it like this: <code>bootstrap.Badge.getInstance(badge)</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>getOrCreateInstance</code>
+      </td>
+      <td>
+        Static method which returns an badge instance associated to a DOM element or create a new one in case it wasn't initialized.
+        You can use it like this: <code>bootstrap.Badge.getOrCreateInstance(element)</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+```
+
+```js
+var badgeNode = document.querySelector('.badge')
+var badge = bootstrap.Badge.getInstance(badgeNode)
+badge.close()
+```
+
+### Events
+
+Bootstrap's badge plugin exposes a few events for hooking into badge functionality.
+
+```html
+<table class="table">
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>close.bs.badge</code></td>
+      <td>
+        Fires immediately when the <code>close</code> instance method is called.
+      </td>
+    </tr>
+    <tr>
+      <td><code>closed.bs.badge</code></td>
+      <td>
+        Fired when the badge has been closed and CSS transitions have completed.
+      </td>
+    </tr>
+  </tbody>
+</table>
+```
+
+```js
+var myBadge = document.getElementById('myBadge')
+myBadge.addEventListener('closed.bs.badge', function () {
+  // do something, for instance, explicitly move focus to the most appropriate element,
+  // so it doesn't get lost/reset to the start of the page
+  // document.getElementById('...').focus()
+})
+```
