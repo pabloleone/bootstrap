@@ -7,8 +7,8 @@
 Here the necessary files to pull from CDN:
 
 ```html
-<link href="https://gitcdn.link/cdn/pabloleone/bootstrap/feature/input-badges/dist/js/bootstrap-badges.min.js" rel="stylesheet">
-<script src="https://gitcdn.link/cdn/pabloleone/bootstrap/feature/input-badges/dist/css/bootstrap-badges.min.css"></script>
+<link href="https://gitcdn.link/cdn/pabloleone/bootstrap/feature/input-badges/dist/css/bootstrap-badges.min.css" rel="stylesheet">
+<script src="https://gitcdn.link/cdn/pabloleone/bootstrap/feature/input-badges/dist/js/bootstrap-badges.min.js"></script>
 ```
 
 ## Badges
